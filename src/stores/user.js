@@ -1,14 +1,19 @@
 import { defineStore } from 'pinia'
-
+import { useNakamaStore } from './nakama'
 export const useUserStore = defineStore('user', {
     state: () => ({ 
         user: false,
-        user_id: false,
-        username: false,
     }),
     getters: {
       isAuthenticated: (state) => state.user,
     },
     actions: {
+      setUser(user) {
+        this.user = user
+      },
+      logoutUser() {
+        this.setUser(false)
+        useNakamaStore().clearSession()
+      },
     },
   })
