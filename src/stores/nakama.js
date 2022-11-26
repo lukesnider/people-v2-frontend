@@ -31,7 +31,7 @@ export const useNakamaStore = defineStore('nakama', {
             return Session.restore(session.token,session.refresh_token)
         },
         async load() {
-            this.client = new Client(process.env.VUE_APP_NAKAMA_KEY, process.env.VUE_APP_NAKAMA_HOST, process.env.VUE_APP_NAKAMA_PORT)
+            this.client = new Client(process.env.VUE_APP_NAKAMA_KEY, process.env.VUE_APP_NAKAMA_HOST, process.env.VUE_APP_NAKAMA_PORT,process.env.VUE_APP_NAKAMA_SSL)
             let session = await this.getSession()
             if (session && ( session.isexpired || session.isexpired(Date.now + 1) )){
                 try {
